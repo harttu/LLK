@@ -1,0 +1,32 @@
+#!/bin/bash
+SESSION=$USER
+SESSIONPATH='~/Desktop/express-4.x-local-example-master'
+
+tmux -2 new-session -d -s $SESSION
+
+tmux new-window -t $SESSION:1 -n 'Logs'
+tmux split-window -h
+tmux select-pane -t 0
+tmux send-keys "vim $SESSIONPATH/server.js" C-m
+tmux select-pane -t 1
+tmux send-keys "vim $SESSIONPATH/db/users.js" C-m
+tmux split-window -v
+#tmux resize-pane -D 10
+tmux send-keys "vim $SESSIONPATH/views/roomalaiset.ejs" C-m
+
+# Setup a CoffeeScript compiler/watchdog pane
+tmux select-pane -t 0
+tmux split-window -v
+tmux resize-pane -D 15
+tmux send-keys "nodejs $SESSIONPATH/server.js" C-m
+
+# Setup a MySQL window
+##tmux new-window -t $SESSION:2 -n 'MySQL' 'echo moi'
+
+# Set default window
+tmux select-window -t $SESSION:1
+
+# Attach to session 
+tmux -2 attach-session -t $SESSION
+
+#tmux send-keys 'rake ts:start' 'C-m'

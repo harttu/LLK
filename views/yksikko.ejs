@@ -1,0 +1,44 @@
+<!--                   -->
+<!--     OTSIKKO       -->
+<!--                   -->
+
+<otsikko2 ng-if="TILA === 'UUSI'||TILA === 'OIKEIN'||TILA === 'VAARIN'">
+    Yksikkömuunnos - {{asetukset.otsikkoTaso}}   {{ pisteet.monesko }} / {{pisteet.maksimi}} 
+</otsikko2>
+<input type="button" ng-click="debugOikein()" value="OIKEIN"></input>
+<input type="button" ng-click="debugVaarin()" value="VAARIN"></input>
+<input type="button" ng-click="matikka()" value="Mathi"></input>
+<!--                   -->
+<!--      KYSYMYS      -->
+<!--                   -->
+<div class="lead" ng-if="TILA !== 'LOPPU'">
+    <!--{{ esitaKysymys() }}-->
+    <span ng-bind-html="esitaKysymys()"></span>
+    <input type="text" size="6" maxlength="6" ng-model="vastausKentta.arvo"> {{ esitaKysymyksenYksikko() }} 
+    <input type="button" ng-if="TILA === 'UUSI'" ng-click="vastaa()" value="Vastaa" class="btn btn-primary">
+</div>
+
+<!--                   -->
+<!--   OIKEIN / VAARIN -->
+<!--                   -->
+
+<div class="lead">
+<div ng-if="TILA === 'OIKEIN'"><h2>Oikein!</h2>
+    <input type="button" ng-click="seuraavaKysymys()" ng-if="TILA === 'OIKEIN'" value="Seuraava" class="btn btn-primary">
+</div>
+    <div ng-if="TILA === 'VAARIN'"><h2>Väärin!</h2> <span ng-bind-html="esitaSelitys()"></span> <input type="button" ng-click="seuraavaKysymys()" value="Seuraava" class="btn btn-primary btn-block"></div>
+    
+</div>
+
+<div>
+
+<!--                   -->
+<!--   LOPPUPISTEET    -->
+<!--                   -->    
+    
+<div ng-if="TILA==='LOPPU'">
+    <otsikko2>Loppupisteesi</otsikko2>
+    <loppupisteet2></loppupisteet2>
+</div>
+
+

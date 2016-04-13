@@ -1,0 +1,11 @@
+<div ng-if="TILA === 'LOPPU'">
+<!--<div class="jumbotron">-->
+    <h3><div class="alert alert-success" ng-if="pisteet.laskeArvosana() === 1">Loistavaa!, Sait oikein {{pisteet.oikein}} / {{pisteet.maksimi}}</div>  
+<div class="alert alert-success" ng-if="1 > pisteet.laskeArvosana() && pisteet.laskeArvosana() >= 0.9">Hyvä!, Sait oikein {{pisteet.oikein}} / {{pisteet.maksimi}}</div>  
+<div class="alert alert-warning" ng-if="0.9 > pisteet.laskeArvosana() && pisteet.laskeArvosana() > 0.6 ">Kohtalaista, Sait oikein {{pisteet.oikein}} / {{pisteet.maksimi}}</div>
+<div class="alert alert-danger" ng-if="pisteet.laskeArvosana() <= 0.6">Oi voi... Sait oikein {{pisteet.oikein}} / {{pisteet.maksimi}}. Näitä sinun pitää kerrata.</div> 
+
+    </h3>
+    <input type="button" ng-click="yritaUudelleen()" class="btn btn-primary btn-block btn-lg" value="Yritä uudelleen"></input>
+    <!--</div>-->
+</div>

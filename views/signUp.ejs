@@ -1,0 +1,39 @@
+<otsikko2>Luo tunnus</otsikko2>
+<div ng-if="TILA === 'LUODAAN'">
+    <form>
+        <div>
+            <label>Käyttäjätunnus*:</label>
+            <input type="text" name="kayttajatunnus" ng-model="formi.kayttajaTunnus"/><br/>
+        </div>
+            <div>
+            <label>Etunimi:</label>
+            <input type="text" name="etunimi" ng-model="formi.etuNimi"/><br/>
+            <label>Sukunimi:</label>
+            <input type="text" name="sukunimi" ng-model="formi.sukuNimi"/><br/>
+            <label>Ryhmä:</label>
+            <input type="text" name="ryhma" ng-model="formi.ryhma"/><br/>
+        </div>
+
+        <div>
+            <label>Salasana*:</label>
+            <input type="password" name="salasana" ng-model="formi.salasana"/>
+        </div>
+        <div>
+            <label>Salasanan vahvistus*:</label>
+            <input type="password" name="salasanaUudestaan" ng-model="formi.salasanaUudestaan"/>
+        </div>
+        <div>
+            <label>Sähköposti*:</label>
+            <input type="text" name="sahkoposti" ng-model="formi.sahkoPosti"/>
+        </div>
+        <div class="alert alert-danger" ng-if="virheet.length" ng-repeat="virhe in virheet">
+            <li>{{ virhe }}</li>
+        </div>
+        <div>
+            <input type="submit" class="button" ng-click="laheta()" value="Luo tunnus"/>
+        </div>
+    </form>
+</div>
+<div ng-if="TILA === 'LUOTU'">
+    <div class="lead">Tunnuksen luonti onnistui!</div>
+</div>

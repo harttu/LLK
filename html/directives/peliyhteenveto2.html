@@ -1,0 +1,70 @@
+<div>
+<!-- directiivit pitää laittaa jonkun sisään, nyt div -->
+<div class="row" ng-repeat="data in darray track by $index" ng-init="loading=[]" style="outline: 2px dashed grey;">
+    <div class="col-md-9">
+        <div class="lead">
+            {{ data.peliTyyppi | capitalize }}tehtävä {{data.kysymystenMaara}} kysymystä vaikeusasteelta {{data.vaikeusAste}}. Oikein {{data.oikeinSuhde | prosentiksi}}
+        </div>
+        <div ng-show="loading[$index]">
+        <div class="row" ng-repeat="data2 in data.kysymykset track by $index" style="outline: 1px dashed grey;">
+            <div class="row">
+                <div class="col-md-9 col-md-offset-1">
+                    <h4><b>{{data2.monesko}}</b>. {{data2.kysymysTeksti }} Vastasit: {{data2.vastaus}}. Oikea vastaus {{data2.oikeaVastaus}}.</h4>
+                </div>
+                <div class="col-md-2 pull-right">
+                    <h4>
+                        <span class="glyphicon glyphicon-ok pull-center" ng-show="data2.oikein" style="color:green;display:block"></span>
+                        <span class="glyphicon glyphicon-remove pull-center" ng-hide="data2.oikein" style="color:red"></span>
+                    </h4>
+                </div>
+            </div>
+      </div>
+     </div>
+    </div>
+    <div class="col-md-3 text-right"> 
+        <div class="lead">
+            {{ data.aika | muotoileAika | capitalize }}
+            <span class="glyphicon glyphicon-arrow-down" ng-hide="loading[$index]" ng-click="loading[$index]=true"></span>
+            <span class="glyphicon glyphicon-arrow-up" ng-show="loading[$index]" ng-click="loading[$index]=false"></span>    
+        </div>
+    </div>
+    
+    </div>
+<!--
+    <div class="row" style="outline: 2px dashed grey;">
+    <div class="col-md-10">
+        <div class="lead">
+            {{ data.peliTyyppi | capitalize }}tehtävä {{data.kysymystenMaara}} kysymystä vaikeusasteelta {{data.vaikeusAste}}. Oikein {{data.oikeinSuhde}}
+        </div>
+        <div class="row" ng-show="data.nakyvissa" ng-repeat="data2 in data.kysymykset" style="outline: 1px dashed grey;">
+            <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <h4><b>{{data2.monesko}}</b>. {{data2.kysymysTeksti }}</h4>
+                </div>
+                <div class="col-md-2 pull-right">
+                    <h4>
+                    <span class="glyphicon glyphicon-ok pull-center" ng-show="data2.oikein" style="color:green;display:block"></span>
+                    <span class="glyphicon glyphicon-remove pull-center" ng-hide="data2.oikein" style="color:red"></span>
+                    </h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-10 col-md-offset-2">
+                    <h4>
+                    Vastasit: {{data2.vastaus}}. Oikea vastaus {{data2.oikeaVastaus}}.
+                    </h4>
+                </div>
+            </div>
+      </div>
+    </div>
+    <div class="col-md-2 text-right"> 
+        <div class="lead">
+            <span class="glyphicon glyphicon-arrow-down" ng-hide="data.nakyvissa" ng-click="nayta(1)"></span>
+            <span class="glyphicon glyphicon-arrow-up" ng-show="data.nakyvissa" ng-click="nayta(0)"></span>    
+        </div>
+    </div>
+    
+    </div>
+    -->    
+  
+</div>
