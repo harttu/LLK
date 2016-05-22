@@ -79,38 +79,6 @@ passport.use(new Strategy(
           return cb(null, user);
     });
   }));
-/*
-exports.findByUsername = function(username, cb) {
-  process.nextTick(function() {
-      // hae tietokannasta tiedot,jos ne saadaan talleta tulokset taulukkoon records
-      Kayttaja.find({kayttajaTunnus: username }, function (err, userObj) {
-        console.log("<<<<<<<<<<CALLBACK SUORITETTIIN> HAE KAYTTAJA>>>>>>>>>>>>>>>>>>");
-        if (err) {
-            console.log(err);
-            console.log('User not found!');
-            return cb(null, null);
-
-        } else if (userObj) {
-             return cb(null, userObj);
-        }
-});
-});
-}
-*/
-/*
-passport.use(new Strategy(
-  function(username, password, cb) {  
-      console.log("Passport:");
-      console.log(username);
-      console.log(password);
-    db.users.findByUsername(username, function(err, user) {
-      if (err) { return cb(err); }
-      if (!user) { return cb(null, false); }
-      if (user.password != password) { return cb(null, false); }
-      return cb(null, user);
-    });
-  }));
-*/
 passport.serializeUser(function(user, cb) {
   cb(null, user.id);
 });
@@ -140,12 +108,6 @@ passport.deserializeUser(function(id, cb) {
     cb(null, user);
   });
   
-    /*
-  db.users.findById(id, function (err, user) {
-    if (err) { return cb(err); }
-    cb(null, user);
-  });
-  */
 });
 
 // Create a new Express application.
@@ -181,27 +143,11 @@ app.use(passport.session());
 // create application/json parser 
 var jsonParser = bodyParser.json()
 
-// Define routes.
+// ROUTEs.
 
-/*
-app.get('/login',
-  function(req, res){
-    res.render('login');
-  });
-  */
-  /*
-  */
-  /*
-app.post('/login', 
-  passport.authenticate('local', { failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('/');
-  });
-  
-// */
 // Define a middleware function to be used for every secured routes 
 var auth = function(req, res, next){ 
-    console.log("Suoritetaan auth||||||||||||||||| arvo:"+req.isAuthenticated())
+    console.log("Suoritetaan auth ||| arvo:"+req.isAuthenticated())
     if (!req.isAuthenticated()) res.sendStatus(401);//res.send(401); 
     else next(); 
     }; //- See more at: https://vickev.com/#!/article/authentication-in-single-page-applications-node-js-passportjs-angularjs
@@ -240,56 +186,7 @@ function(req,res){ res.render("angularLogin.ejs"); })
         function(req,res){
             res.render("tulokset.ejs", {user:req.user.kayttajaTunnus/*,keys:Object.keys(req.user)*/}); // tähän user.username
         }
-//    require('connect-ensure-login').ensureLoggedIn('/kirjauduEnsin'), 
- //   ensureLoggedIn('/kirjauduEnsin'),
-/*
-    function(req,res){ 
-     if(req.user){
-         res.render("tulokset.ejs", {user:req.user,keys:Object.keys(req.user)}); // tähän user.username
-     }
- else{
-         res.render("tulokset.ejs", {user:{username:"Kule"},keys:3}); // tähän user.username
- }
- */
  );
-/*
-app.get('/angularLogout', function(req, res){
-  req.logout();
-  res.end();
-  //res.redirect('/');
-});*/
-/*
-app.post('/angularLogin', function(req, res, next) {
-  passport.authenticate('local', function(err, user, info) {
-    if (err) { return next(err); }
-    if (!user) { 
-        console.log("/angularLogin -> Väärät käyttäjätunnukset.");
-        return res.status(401).end();
-    }
-    req.logIn(user, function(err) {
-      if (err) { return next(err); }
-      console.log("/angularLogin -> Kirjautuminen onnistui.");
-      return res.status(200).end();
-    });
-  })(req, res, next);
- });
- // VARA
- /*
- 
-app.post('/angularLogin', function(req, res, next) {
-  passport.authenticate('local', function(err, user, info) {
-    if (err) { return next(err); }
-    if (!user) { 
-        console.log("/angularLogin -> Väärät käyttäjätunnukset.");
-        return res.status(401).end();
-    }
-    req.logIn(user, function(err) {
-      if (err) { return next(err); }
-      console.log("/angularLogin -> Kirjautuminen onnistui.");
-      return res.status(200).end();
-    });
-  })(req, res, next);
- });*/
  
  app.post("/lisaaPeli/",jsonParser,function(req,res){
      if (!req.body) return res.sendStatus(400);

@@ -1,13 +1,13 @@
 <html ng-app="myApp">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />  
-    
+ 
+<!-- Käytä näitä, kun normaalitilanteessa -->
+<!--    
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
 <script src="https://code.angularjs.org/1.4.8/angular-sanitize.min.js"></script>
 
- <script type="text/javascript"
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 
 <script src="https://code.jquery.com/jquery-1.12.3.min.js" integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ=" crossorigin="anonymous"></script>
 
@@ -15,7 +15,12 @@
 
 <script src="/assets/angular-moment.js"></script>
 
-<!-- 
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+-->
+<!-- DEVELOP, eli käytä näitä testatessa -->
+
 <script src="/assets/angular.js"></script>
 <script src="/assets/angular-moment.js"></script>
 <script src="/assets/angular-route.js"></script>
@@ -23,17 +28,24 @@
 
 <script src="/assets/jquery-1.12.0.js"></script>
 
-<script src="/assets/bootstrap-3.3.6-dist/js/bootstrap.js"></script>
+<link rel="stylesheet" href="/assets/bootstrap-3.3.6-dist/css/bootstrap.min.css">
+<script src="/assets/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<!--
+<script src="/assets/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+-->
+<!-- DEVELOP-osa loppu -->
+
+<!-- Yhteinen, lataa tämä serveriltä joka tapauksessa -->
+<!-- Tämä ainakin toimii MathJaxiin
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 -->
 <script src="/assets/moment-with-locales.js"></script>
 
 <!--
 <link rel="stylesheet" href="/assets/bootstrap-3.3.6-dist/css/bootstrap.min.css">
 -->
-<link rel="stylesheet" href="/assets/bootstrap-3.3.6-dist/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-
-<!--<script src="/assets/MathJax.js"></script>-->
 
 </head>
 
@@ -66,6 +78,7 @@
         <li><a href="#/valikko/liuos">Liuoslaskuja</a></li>
         <li><a href="#/tulokset">Tulokset</a></li>
         <li><a href="#/logIn">Kirjaudu Sisään</a></li>
+        <!-- Käytetään DEBUGaksessa -->
   <!--      <li><a href="#/logJackIn">KirjaaJack</a></li> -->
         <li><a href="#/logOut">Kirjaudu Ulos</a></li>
         <li><a href="#/signUp">Luo tili</a>
@@ -99,18 +112,20 @@
 <a href="#/logJackIn">LogJackIn</a>
 <a href="#/logout">Log out</a>
 -->
+<!--<div ng-controller="exitController"></div>-->
 <div class="container">
     <div ng-view></div>
 </div>
 
-<!--
-<script src="/assets/MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
--->
 <script src="/assets/underscore.js"></script>
 <script src="/assets/angularApp.js"></script>
-<script src="/assets/logInOut.js"></script>
+<script src="/assets/userData-service.js"></script>
+<!--<script src="/assets/logInOut.js"></script>-->
+<script src="/assets/logIn-controller.js"></script>
+<script src="/assets/logOut-controller.js"></script>
+<script src="/assets/signUp-controller.js"></script>
 <script src="/assets/angularApuFunktiot.js"></script>
-<script src="/assets/tulokset.js"></script>
+<script src="/assets/tulokset-controller.js"></script>
 <script src="/assets/yksikko-controller.js"></script>
 <script src="/assets/ohjaus-controller.js"></script>
 <script src="/assets/roomalaiset.js"></script>

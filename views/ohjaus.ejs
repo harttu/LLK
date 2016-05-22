@@ -3,9 +3,9 @@
 <!--                   -->
 {{date}}
 <otsikko2 ng-if="TILA === 'UUSI'||TILA === 'OIKEIN'||TILA === 'VAARIN'">
-    {{asetukset.peliTyyppi}} - {{asetukset.otsikkoTaso}}   {{ pisteet.monesko }} / {{pisteet.maksimi}} 
+    {{asetukset.peliTyyppi}} - {{asetukset.otsikkoTaso}}   {{ pisteet.monesko }} / {{pisteet.maksimi}} - {{kayttajaNimi}}
 </otsikko2>
-<!--
+<!--DEBUG-nappulat
 <input type="button" ng-click="debugOikein()" value="OIKEIN"></input>
 <input type="button" ng-click="debugVaarin()" value="VAARIN"></input>
 <input type="button" ng-click="matikka()" value="Mathi"></input>
@@ -41,4 +41,6 @@
 <div ng-if="TILA==='LOPPU'">
     <otsikko2>Loppupisteesi</otsikko2>
     <loppupisteet2></loppupisteet2>
+    <yhteenveto kysymykset="Kysymykset"></yhteenveto>
 </div>
+    
