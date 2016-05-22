@@ -6,19 +6,19 @@
             {{ data.peliTyyppi | capitalize }}tehtävä {{data.kysymystenMaara}} kysymystä vaikeusasteelta {{data.vaikeusAste}}. Oikein {{data.oikeinSuhde | prosentiksi}}
         </div>
         <div ng-show="loading[$index]">
-        <div class="row" ng-repeat="data2 in data.kysymykset track by $index" style="outline: 1px dashed grey;">
-            <div class="row">
-                <div class="col-md-9 col-md-offset-1">
-                    <h4><b>{{data2.monesko}}</b>. {{data2.kysymysTeksti }} Vastasit: {{data2.vastaus}}. Oikea vastaus {{data2.oikeaVastaus}}.</h4>
+            <div class="row" ng-repeat="data2 in data.kysymykset track by $index" style="outline: 1px dashed grey;">
+                <div class="row">
+                    <div class="col-md-9 col-md-offset-1">
+                        <h4><b>{{data2.monesko}}</b>. {{data2.kysymysTeksti }} Vastasit: {{data2.vastaus}}. Oikea vastaus {{data2.oikeaVastaus}}.</h4>
+                    </div>
+                    <div class="col-md-2 pull-right">
+                        <h4>
+                            <span class="glyphicon glyphicon-ok pull-center" ng-show="data2.oikein" style="color:green;display:block"></span>
+                            <span class="glyphicon glyphicon-remove pull-center" ng-hide="data2.oikein" style="color:red"></span>
+                        </h4>
+                    </div>
                 </div>
-                <div class="col-md-2 pull-right">
-                    <h4>
-                        <span class="glyphicon glyphicon-ok pull-center" ng-show="data2.oikein" style="color:green;display:block"></span>
-                        <span class="glyphicon glyphicon-remove pull-center" ng-hide="data2.oikein" style="color:red"></span>
-                    </h4>
-                </div>
-            </div>
-      </div>
+        </div>
      </div>
     </div>
     <div class="col-md-3 text-right"> 

@@ -3,9 +3,18 @@ angular.module('myApp')
 .controller('ohjausController',
     ['$scope','$routeParams','$location','$window','$route','userData',
     function($scope,$routeParams,$location,$window,$route,userData){
-        
-        
-    $scope.kysymykset = [];    
+     
+     
+    $scope.kayttajaNimi = userData.getUser();   
+    /*   
+    if( userData.getUser() === "guest")
+    {
+        $scope.kayttajaNimi = "";
+    }*/
+    
+    $scope.kysymykset = []; 
+    $scope.yhteenvetoKysymykset = {kysymykset:[]};
+       
 //    var self = this;
     console.log("This on ");
     console.dir(this);
@@ -143,6 +152,9 @@ angular.module('myApp')
             validi = parseFloat(validi);
             return validi;
         }
+/*        else if( isNaN(luku) ){
+            return "-";
+        }*/
         else{
             return 0;
         }
@@ -231,6 +243,8 @@ angular.module('myApp')
                 console.log("<<<<<<<<<<<<<<<<<<< lähetetään serverille.");
                 console.dir(serverille);
                 userData.paivitaPeliTilanne(serverille);
+                $scope.yhteenvetoKysymykset.kysymykset = serverille.data;
+                
             }
         else{
             console.log(">Sama oli joten asetetaan tila UUSI")

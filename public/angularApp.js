@@ -1,43 +1,16 @@
 var myApp = angular.module('myApp',['ngRoute','ngSanitize','angularMoment']);
 
 /*
-myApp.service('userData',function(){
-    console.log("userData-service ajetaan|||||||||||")
-   // this.user = "guest";
+angular.module('myApp', [])
+  .controller('exitController', function($scope, $window) {
+    $scope.onExit = function() {
+        alert("Haluatko lähteä")
+      return ('bye bye');
+    };
 
-});
-*/
-
-
-
-myApp.service('userData', ['$http',function($http){
-   this.paivitaPeliTilanne = function(tilanne) {
-        $http({
-            method: 'POST',
-            url: "/lisaaPeli/",
-            data: JSON.stringify(tilanne),
-            headers: {'Content-Type': 'application/json'}
-    }).success(function(data, status) {
-            console.log("POST onnistui");
-            console.dir(data);
-        });
-    }
-    this.setUser = function(name){ 
-        console.log("userData > "+name);
-        localStorage.setItem("userData_user", name);
-    //    this.user = name; 
-    }
-    this.getUser = function(){ 
-        return localStorage.getItem("userData_user") || "guest";
-        //return user; 
-        }
-    this.logoutUser = function(){
-        localStorage.setItem("userData_user", "guest");
-    } 
-}]);
- 
-
-
+   $window.onbeforeunload =  $scope.onExit;
+  });
+/*
 myApp.service('farmService', function() {
     this.ateGrassTotal = 0;
     this.evalFarm = function(times,cows) {
@@ -53,127 +26,9 @@ myApp.service('farmService', function() {
         return {grass:grass,cows:newCows}
     };
 });
-
-/*
-myApp.controller('roomalaisetController',function($http,$scope){
-// Simple GET request example:
-$scope.paivitaServerille = function(){
-    $http({
-        method:'POST',
-        url:'/angularData/roomalaiset',
-        data:JSON.stringify($scope.tilanne),
-        headers:{'Content-Type':'application/json'}
-    }).success(function(data, status) {
-            console.log("POST onnistui");
-            console.dir(data);
-        });        
-    };
-
-
-$scope.tilanne = [];
-
-$scope.taso = 4;
-$scope.oikein = function(){ $scope.taso++; $scope.tilanne.push([$scope.taso,1]); }
-$scope.vaarin = function(){ $scope.tilanne.push([$scope.taso,0]); }
-
-$scope.lahetaGET = function(){
-    $http({
-        method:'GET',
-        url:'/angularData/roomalaiset'
-    }).then(function(response) { //http
-        $scope.tiedot = response.data;
-        $scope.tilanne.push(response.data.pistepeli5.viimeinenPeli);
-        $scope.taso = response.data.badge.nykyinenTaso;
-    }) //then
-}(); //this is an IIFE;
-
-
-$scope.lahetaPOST = function() {    
-        $http({
-            method: 'POST',
-            url: "/testJSONPOST/",
-            data: JSON.stringify({data:123}),
-            headers: {'Content-Type': 'application/json'}
-            //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-    }).success(function(data, status) {
-            console.log("POST onnistui");
-            console.dir(data);
-        });
-    }
-});
-*/
-/*
-myApp.controller('logoutController',function($http,$scope,$window,$location){
-    function logMeOut() {    
-        console.log("Submitoitu");
-        $http({
-            method: 'GET',
-            url: "/angularLogout/",
-            //data: JSON.stringify({username:$scope.username,password:$scope.password}),
-            //headers: {'Content-Type': 'application/json'}
-            //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-    }).success(function(data, status) {
-            console.log("logout onnistui");
-            console.dir(data);
-    });
-    }
-    logMeOut();
-});
-
-
-
-
-myApp.controller('logJackInController',function($http){
-    $http({
-        method:'POST',
-        url:"/angularLogin/",
-        data: "username=jack&password=secret",
-        headers:{'Content-type':'application/x-www-form-urlencoded'}
-    });
-    
-})
-
-myApp.controller('loginController',function($http,$scope,$window,$location){
-    $scope.submit = function() {    
-        console.log("Submitoitu");
-        $http({
-            method: 'POST',
-            url: "/angularLogin/",
-            data: JSON.stringify({username:$scope.username,password:$scope.password}),
-            headers: {'Content-Type': 'application/json'}
-            //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-    }).success(function(data, status) {
-            console.log("POST onnistui");
-            console.dir(data);
-        });
-    }
-    
-    $scope.submit2 = function() {    
-        console.log("Submitoitu2");
-        $http({
-            method: 'POST',
-            url: "/angularLogin/",
-            data: "username=" + $scope.username + "&" + "password=" + $scope.password,
-            //data: JSON.stringify({username:$scope.username,password:$scope.password}),
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-            //headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-    }).success(function(data, status) {
-            console.log("POST onnistui");
-            console.dir(data);
-            $window.location.href = "#/tulokset";
-            
-        }).error(function(data, status){
-            console.log("POST onnistui, väärät tunnukset");
-            $scope.errorMsg = true;
-            console.dir(data);
-            
-        })
-    }
-});
-
 */
 
-// - See more at: https://vickev.com/#!/article/authentication-in-single-page-applications-node-js-passportjs-angularjs
+// - Teoriapläjäys SPA ja login: https://vickev.com/#!/article/authentication-in-single-page-applications-node-js-passportjs-angularjs
 
 myApp.config(function ($httpProvider) { 
     $httpProvider.interceptors.push(function($q, $location) { 
@@ -268,6 +123,13 @@ myApp.directive("loppupisteet2",function(){
     return { 
         replace:true,
         templateUrl:'/directives/loppupisteet2.html',
+    }
+});
+
+myApp.directive("yhteenveto",function(){
+    return { 
+        replace:true,
+        templateUrl:'/directives/yhteenveto.html',
     }
 });
 
