@@ -197,7 +197,7 @@
   
     function arvoTekstinMuotoilu(vaikeusAste,kysymys){
         var nimet = ["Potilaalle","Kallelle","Eskolle","Irmalle","Liisalle","Juhanille","Jormalle","Päiville"];
-        k.potilaanNimi = nimet[Math.round(Math.random()*nimet.length - 1)];
+        k.potilaanNimi = nimet[Math.round(Math.random()*(nimet.length - 1))];
         k = kysymys;
         var teksti;
         if( Math.random() < 0.5){

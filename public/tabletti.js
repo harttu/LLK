@@ -139,7 +139,7 @@
 //        console.debug("muotoileVastaus annosYksikko:"+ k.annosYksikko +" tabletinYksikko:"+k.tabletinYksikko);
         k = this.kysymys;
         var teksti;
-        var yksikkoMuunnos;
+        var yksikkoMuunnos = ""; 
         teksti = {yksikko :"",
                   ajanKohta:""
                         };
@@ -148,7 +148,7 @@
         if( k.annosYksikko !== k.tabletinYksikko ){
             if( yksikot[k.annosYksikko] < yksikot[k.tabletinYksikko] ){
                 muutettavaYksikko = k.annosYksikko;
-                yksikkoMuunnos =  "<h3>Yksikkömuunnos</h3>"
+                yksikkoMuunnos =  "<h3><u>Yksikkömuunnos</u></h3>"
                 + "Muutetaan "+k.esitaTabletinVahvuus()+" yksikköön "+k.annosYksikko+" => "+ k.esitaTabletinVahvuus(k.annosYksikko)+".</br>";
            }
             else {
@@ -191,15 +191,15 @@ k.esitaTabletinVahvuus(muutettavaYksikko)+"\\times x tabl"+
         
         
         return yksikkoMuunnos 
-        + "<h3>Verranto</h3>Muodostetaan verranto ja kerrotaan ristiin."
+        + "<h3><u>Verranto</u></h3>Muodostetaan verranto ja kerrotaan ristiin."
         + expression 
         + "Ratkaistaan saadusta yhtälöstä tuntematon x."  
         + expression2  
         + expression3 
-        + "<h3>Loppupäättely</h3>"
+        + "<h3><u>Loppupäättely</u></h3>"
         + kertaaPaivassa 
         + ajanKohta
-        + "<h3>Vastaus</h3>" 
+        + "<h3><u>Vastaus</u></h3>" 
         + vastaus;// + " JA " +expr;
     
             function vastaus(suhde){
